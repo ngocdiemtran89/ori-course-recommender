@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORI Course Recommender – Tư vấn khóa học ORI TOEIC</title>
+    <meta name="description"
+        content="Trả lời vài câu hỏi nhanh để nhận gợi ý gói học phù hợp nhất tại ORI TOEIC. Luyện TOEIC, Giao tiếp, Phỏng vấn Hàng không.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Decorative background elements -->
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+
+        <!-- ===== SCREEN 1: WELCOME ===== -->
+        <section id="screen-welcome" class="screen active">
+            <div class="card welcome-card">
+                <div class="logo-badge">
+                    <span class="logo-icon">✈️</span>
+                </div>
+                <h1>ORI Course Recommender</h1>
+                <p class="subtitle">Tìm gói học phù hợp nhất cho bạn chỉ trong <strong>2 phút</strong></p>
+                <div class="feature-pills">
+                    <span class="pill">🎯 TOEIC</span>
+                    <span class="pill">💬 Giao tiếp</span>
+                    <span class="pill">✈️ Phỏng vấn HK</span>
+                    <span class="pill">🤖 AI Practice</span>
+                </div>
+                <button id="btn-start" class="btn btn-primary btn-glow">
+                    Bắt đầu ngay
+                    <span class="btn-arrow">→</span>
+                </button>
+                <p class="hint">Miễn phí • Không cần đăng ký</p>
+            </div>
+        </section>
+
+        <!-- ===== SCREEN 2: QUIZ ===== -->
+        <section id="screen-quiz" class="screen">
+            <div class="card quiz-card">
+                <div class="quiz-header">
+                    <button id="btn-back" class="btn-icon" title="Quay lại">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="progress-wrapper">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="progress-text" class="progress-text">1 / 7</span>
+                    </div>
+                </div>
+
+                <div id="question-container" class="question-container">
+                    <h2 id="question-title" class="question-title"></h2>
+                    <p id="question-subtitle" class="question-subtitle"></p>
+                    <div id="options-list" class="options-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SCREEN 3: RESULT ===== -->
+        <section id="screen-result" class="screen">
+            <div class="card result-card">
+                <div class="result-header">
+                    <span class="result-icon">🎉</span>
+                    <h2>Gói học phù hợp cho bạn</h2>
+                    <p class="result-subtext">Dựa trên câu trả lời của bạn, ORI đề xuất:</p>
+                </div>
+
+                <div id="result-content" class="result-content">
+                    <!-- Dynamically filled -->
+                </div>
+
+                <button id="btn-to-contact" class="btn btn-primary btn-glow">
+                    Đăng ký tư vấn miễn phí
+                    <span class="btn-arrow">→</span>
+                </button>
+                <button id="btn-retake" class="btn btn-secondary">
+                    Làm lại bài test
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== SCREEN 4: CONTACT FORM ===== -->
+        <section id="screen-contact" class="screen">
+            <div class="card contact-card">
+                <div class="contact-header">
+                    <span class="contact-icon">📋</span>
+                    <h2>Để lại thông tin</h2>
+                    <p>ORI sẽ liên hệ tư vấn chi tiết trong 24h</p>
+                </div>
+
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="input-name">Họ và tên <span class="required">*</span></label>
+                        <input type="text" id="input-name" placeholder="Nguyễn Văn A" required autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-phone">Số điện thoại <span class="required">*</span></label>
+                        <input type="tel" id="input-phone" placeholder="0901 234 567" required autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-note">Ghi chú thêm <span class="optional">(không bắt buộc)</span></label>
+                        <textarea id="input-note" rows="3"
+                            placeholder="VD: Muốn học buổi tối, cần tư vấn thêm về trả góp..."></textarea>
+                    </div>
+
+                    <div id="form-summary" class="form-summary">
+                        <!-- Dynamically filled: summary of quiz answers -->
+                    </div>
+
+                    <button type="submit" id="btn-submit" class="btn btn-primary btn-glow">
+                        <span class="btn-text">Gửi thông tin</span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span> Đang gửi...
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ===== SCREEN 5: SUCCESS ===== -->
+        <section id="screen-success" class="screen">
+            <div class="card success-card">
+                <div class="success-animation">
+                    <div class="checkmark-circle">
+                        <svg class="checkmark" viewBox="0 0 52 52">
+                            <circle class="checkmark-bg" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                    </div>
+                </div>
+                <h2>Cảm ơn bạn! 🎉</h2>
+                <p>ORI đã nhận thông tin và sẽ liên hệ bạn trong <strong>24 giờ</strong>.</p>
+                <div class="contact-info-box">
+                    <p>Hoặc liên hệ trực tiếp:</p>
+                    <a href="tel:0906303373" class="hotline">📞 Hotline: 0906 303 373</a>
+                </div>
+                <button id="btn-restart" class="btn btn-secondary">Làm lại bài test</button>
+            </div>
+        </section>
+    </div>
+
+    <footer class="app-footer">
+        Made by: Kate Tran – ORI TOEIC – Hotline <a href="tel:0906303373">0906 303 373</a>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
