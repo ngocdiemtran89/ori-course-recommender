@@ -39,6 +39,7 @@
                     <span class="btn-arrow">→</span>
                 </button>
                 <p class="hint">Miễn phí • Không cần đăng ký</p>
+                <button class="btn-link" onclick="showScreen('catalog')">📚 Tham khảo tất cả gói học →</button>
             </div>
         </section>
 
@@ -85,11 +86,56 @@
                     Đăng ký tư vấn miễn phí
                     <span class="btn-arrow">→</span>
                 </button>
+                <button id="btn-catalog-from-result" class="btn btn-outline" onclick="showScreen('catalog')">
+                    📚 Xem tất cả khóa học & So sánh
+                </button>
                 <button id="btn-retake" class="btn btn-secondary">
                     Làm lại bài test
                 </button>
             </div>
         </section>
+
+        <!-- ===== SCREEN: COURSE CATALOG ===== -->
+        <section id="screen-catalog" class="screen">
+            <div class="card catalog-card">
+                <div class="catalog-header">
+                    <button class="btn-icon" onclick="showScreen(state.recommendation ? 'result' : 'welcome')"
+                        title="Quay lại">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div>
+                        <h2>📚 Tất cả gói học ORI 2026</h2>
+                        <p class="catalog-subtitle">Chỉ từ 75.000đ/giờ — Rẻ nhất thị trường!</p>
+                    </div>
+                </div>
+
+                <div id="catalog-content" class="catalog-content">
+                    <!-- Dynamically filled -->
+                </div>
+
+                <div class="trial-banner">
+                    <div class="trial-icon">🎓</div>
+                    <div class="trial-info">
+                        <h3>Chương Trình Học Thử — ĐỘC QUYỀN</h3>
+                        <p>Học 1 tuần miễn phí (2 buổi) • Giáo viên chuyên nghiệp • Không bắt buộc đăng ký</p>
+                        <p class="trial-cta">Hài lòng mới đăng ký — 100% quyết định do bạn!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MODAL: COURSE DETAIL ===== -->
+        <div id="modal-detail" class="modal-overlay" onclick="if(event.target===this)closeDetailModal()">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeDetailModal()">✕</button>
+                <div id="modal-body">
+                    <!-- Dynamically filled -->
+                </div>
+            </div>
+        </div>
 
         <!-- ===== SCREEN 4: CONTACT FORM ===== -->
         <section id="screen-contact" class="screen">

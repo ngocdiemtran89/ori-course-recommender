@@ -13,18 +13,56 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxdsWITIWEEv8
 // ==============================
 const PACKAGES = {
     toeic12: {
-        name: 'TOEIC 12 buổi/tháng',
+        name: 'TOEIC Buổi Tối 3 buổi/tuần',
         price: 1600000,
         priceLabel: '1.600.000đ/tháng',
-        note: 'Đóng theo tháng, không cam kết dài hạn',
-        isMonthly: true
+        note: 'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu, có test mỗi cuối tháng',
+        isMonthly: true,
+        category: 'toeic_monthly',
+        tag: 'Phù hợp người đi làm',
+        subtitle: 'Lớp buổi tối, linh hoạt thời gian',
+        perHour: '≈75.000đ/giờ',
+        schedule: '3 buổi/tuần • Buổi tối',
+        duration: 'Theo tháng',
+        sessions: '12 buổi/tháng',
+        sessionLength: '1.5 giờ/buổi',
+        totalHours: '18 giờ/tháng',
+        highlight: 'Siêu tiết kiệm!',
+        features: [
+            'Lớp buổi tối 3 buổi/tuần — phù hợp người đi làm',
+            '12 buổi/tháng, mỗi buổi 1.5 giờ (18 giờ/tháng)',
+            'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu',
+            'Có test đánh giá mỗi cuối tháng',
+            'Giáo viên chuyên môn TOEIC',
+            'Tài liệu học tập đầy đủ',
+            'Ưu đãi khi đăng ký theo nhóm'
+        ]
     },
     toeic20: {
-        name: 'TOEIC 20 buổi/tháng',
+        name: 'TOEIC Buổi Sáng 5 buổi/tuần',
         price: 2300000,
         priceLabel: '2.300.000đ/tháng',
-        note: 'Đóng theo tháng, không cam kết dài hạn',
-        isMonthly: true
+        note: 'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu, có test mỗi cuối tháng',
+        isMonthly: true,
+        category: 'toeic_monthly',
+        tag: '🏆 PHỔ BIẾN NHẤT',
+        subtitle: 'Tiến độ nhanh, giá rẻ nhất/giờ',
+        perHour: '≈76.000đ/giờ — Rẻ nhất!',
+        schedule: '5 buổi/tuần • Buổi sáng',
+        duration: 'Theo tháng',
+        sessions: '20 buổi/tháng',
+        sessionLength: '1.5 giờ/buổi',
+        totalHours: '30 giờ/tháng',
+        highlight: '🏆 Rẻ nhất thị trường!',
+        features: [
+            'Lớp buổi sáng 5 buổi/tuần — tiến độ nhanh nhất',
+            '20 buổi/tháng, mỗi buổi 1.5 giờ (30 giờ/tháng)',
+            'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu',
+            'Có test đánh giá mỗi cuối tháng',
+            'Chỉ ≈76.000đ/giờ — rẻ nhất thị trường!',
+            'Giáo viên chuyên môn TOEIC',
+            'Ưu đãi khi đăng ký theo nhóm'
+        ]
     },
     toeic500: {
         name: 'TOEIC Trọn gói 500–600',
@@ -32,7 +70,22 @@ const PACKAGES = {
         priceLabel: '12.000.000đ',
         note: 'Học không giới hạn trong 14 tháng hoặc đến khi đạt mục tiêu, tặng tư vấn CV + thiết kế CV 1 lần',
         isMonthly: false,
-        months: 14
+        months: 14,
+        category: 'toeic_full',
+        tag: 'Trung Cấp 500–600',
+        subtitle: 'TOEIC 600 trở xuống — Mục tiêu 500+',
+        perHour: '',
+        schedule: 'Học không giới hạn',
+        duration: '14 tháng hoặc đạt mục tiêu',
+        highlight: '🎁 Tặng tư vấn CV & thiết kế CV 1 lần',
+        features: [
+            'Học không giới hạn trong 14 tháng',
+            'Hoặc đến khi đạt mục tiêu — không giới hạn số buổi',
+            'Tặng tư vấn CV & thiết kế CV 1 lần',
+            'Giáo viên chuyên TOEIC, lộ trình cá nhân',
+            'Thi thử định kỳ, đánh giá tiến độ',
+            'Trả góp 5 lần — không lãi suất'
+        ]
     },
     toeic610: {
         name: 'TOEIC Trọn gói 610–750',
@@ -40,15 +93,45 @@ const PACKAGES = {
         priceLabel: '15.000.000đ',
         note: 'Học không giới hạn trong 14 tháng hoặc đến khi đạt mục tiêu, tặng tư vấn CV + thiết kế CV 1 lần',
         isMonthly: false,
-        months: 14
+        months: 14,
+        category: 'toeic_full',
+        tag: '🔥 HOT — Cao Cấp 610–750+',
+        subtitle: 'TOEIC 600–750+ — Mục tiêu cao',
+        perHour: '',
+        schedule: 'Học không giới hạn đến đủ target',
+        duration: '14 tháng hoặc đạt mục tiêu',
+        highlight: '🎯 Đạt chứng chỉ TOEIC 610–750',
+        features: [
+            'Đạt chứng chỉ TOEIC 610–750',
+            'Học không giới hạn trong 14 tháng',
+            'Học không giới hạn đến khi đạt mục tiêu',
+            'Tặng tư vấn CV & thiết kế CV 1 lần',
+            'Giáo viên chuyên TOEIC, lộ trình nâng cao',
+            'Trả góp 5 lần — không lãi suất'
+        ]
     },
     giaotiep: {
-        name: 'Giao tiếp phản xạ',
+        name: 'Giao tiếp Thành Thạo',
         price: 15000000,
         priceLabel: '15.000.000đ / 6 tháng',
         note: 'Học trong 6 tháng, tặng thêm 2 tháng nếu học đều nghỉ ≤10%',
         isMonthly: false,
-        months: 6
+        months: 6,
+        category: 'giaotiep',
+        tag: '6 tháng',
+        subtitle: 'Luyện tập giao tiếp đạt mức thành thạo',
+        perHour: '≈2.500.000đ/tháng',
+        schedule: 'Lịch linh hoạt',
+        duration: '6 tháng (+ 2 tháng bonus)',
+        highlight: '🎁 Tặng thêm 2 tháng miễn phí nếu học đều, nghỉ ≤10%',
+        features: [
+            'Giao tiếp phản xạ 6 tháng — bình quân 2.5tr/tháng',
+            'Phương pháp ORI độc quyền — luyện phản xạ thực tế',
+            'Tặng thêm 2 tháng miễn phí nếu học đều, nghỉ ≤10%',
+            'Chủ đề đa dạng: công việc, du lịch, đời sống',
+            'Giáo viên hướng dẫn 1-1 và nhóm nhỏ',
+            'Trả góp 5 lần — không lãi suất'
+        ]
     },
     combo500gt: {
         name: 'Combo TOEIC 500–600 + Giao tiếp',
@@ -56,7 +139,22 @@ const PACKAGES = {
         priceLabel: '20.000.000đ',
         note: 'Học không giới hạn trong 14 tháng hoặc đến khi đạt mục tiêu',
         isMonthly: false,
-        months: 14
+        months: 14,
+        category: 'combo',
+        tag: '💰 TIẾT KIỆM 7 TRIỆU',
+        subtitle: 'Kết hợp TOEIC 500 và giao tiếp',
+        perHour: '',
+        schedule: 'Học không giới hạn',
+        duration: '14 tháng',
+        highlight: 'Tiết kiệm 7 triệu so với mua riêng (12tr + 15tr = 27tr)',
+        features: [
+            'Không giới hạn TOEIC — học đến khi đạt 500–600',
+            'Giao tiếp không giới hạn 12 tháng',
+            'Đầu ra TOEIC + Giao tiếp nhanh nhất',
+            'Tặng tư vấn CV & thiết kế CV 1 lần',
+            'Tiết kiệm 7 triệu so với mua riêng!',
+            'Trả góp 5 lần — không lãi suất'
+        ]
     },
     combo650gt: {
         name: 'Combo TOEIC 650–700+ + Giao tiếp',
@@ -64,65 +162,170 @@ const PACKAGES = {
         priceLabel: '25.000.000đ',
         note: 'Học không giới hạn trong 14 tháng hoặc đến khi đạt mục tiêu',
         isMonthly: false,
-        months: 14
+        months: 14,
+        category: 'combo',
+        tag: '💰 TIẾT KIỆM 10 TRIỆU',
+        subtitle: 'Kết hợp TOEIC 600+ và giao tiếp nâng cao',
+        perHour: '',
+        schedule: 'Học không giới hạn',
+        duration: '14 tháng',
+        highlight: 'Tiết kiệm 10 triệu so với mua riêng (15tr + 15tr = 30tr)',
+        features: [
+            'Không giới hạn TOEIC — học đến khi đạt 650–700+',
+            'Giao tiếp không giới hạn 12 tháng',
+            'Đầu ra TOEIC + Giao tiếp nhanh nhất',
+            'Tặng tư vấn CV & thiết kế CV 1 lần',
+            'Tiết kiệm 10 triệu so với mua riêng!',
+            'Trả góp 5 lần — không lãi suất'
+        ]
     },
-    pvMatDat: {
-        name: 'PV mặt đất 1-1',
-        price: 5000000,
-        priceLabel: '5.000.000đ / 12 buổi',
-        note: 'Đảm bảo +10.000.000đ, free CV 1 lần',
-        isMonthly: false,
-        months: 3
-    },
-    pvTvhkTrong: {
-        name: 'PV TVHK trong nước 1-1',
-        price: 10000000,
-        priceLabel: '10.000.000đ / 20 buổi',
-        note: 'Đảm bảo +10.000.000đ, free CV 2 lần',
-        isMonthly: false,
-        months: 5
-    },
-    pvTvhkFull: {
-        name: 'PV TVHK trong & ngoài nước 1-1',
-        price: 15000000,
-        priceLabel: '15.000.000đ / 30 buổi',
-        note: 'Đảm bảo +10.000.000đ, free CV 5 lần',
-        isMonthly: false,
-        months: 7
-    },
+
     engHK: {
-        name: 'Tiếng Anh chuyên hàng không',
+        name: 'Tiếng Anh chuyên Hàng Không',
         price: 10000000,
         priceLabel: '10.000.000đ / 2 tháng',
-        note: '',
+        note: 'Duy nhất tại ORI — từ vựng cabin, PA, safety',
         isMonthly: false,
-        months: 2
+        months: 2,
+        category: 'chuyennganh',
+        tag: 'DUY NHẤT TẠI ORI',
+        subtitle: 'Học sách chuyên về Hàng Không',
+        perHour: '',
+        schedule: '2 tháng • Max 15 học viên/lớp',
+        duration: '2 tháng',
+        highlight: '✈️ Duy nhất tại ORI — chuyên biệt ngành bay',
+        features: [
+            'Học sách chuyên về Hàng Không',
+            '2 tháng — Max 15 học viên/lớp',
+            'Chuẩn bị kỹ năng chuyên ngành',
+            'Từ vựng cabin, PA announcement, safety',
+            'Đối tác trên 10 học viên được mở lớp riêng',
+            'Giáo viên có kinh nghiệm ngành bay'
+        ]
     },
     aiHK: {
-        name: 'Gói AI cho training HK',
+        name: 'Gói AI Học Training',
         price: 3000000,
         priceLabel: '3.000.000đ / 10 buổi',
-        note: '',
+        note: 'Bộ công cụ 7 AI chuyên dùng cho học tập',
         isMonthly: false,
-        months: 2
+        months: 2,
+        category: 'chuyennganh',
+        tag: 'BỘ CÔNG CỤ 7 AI',
+        subtitle: '7 AI chuyên dùng cho học tập hàng không',
+        perHour: '',
+        schedule: '10 buổi',
+        duration: '10 buổi',
+        highlight: '🎁 Tặng AI Gemini Pro + tài khoản nghe ghi chép (1.5 triệu)',
+        features: [
+            '7 AI chuyên dùng cho học tập hàng không',
+            'Hướng dẫn từng case thực tế',
+            '10 buổi practice với AI',
+            'Tặng AI Gemini Pro + tài khoản nghe ghi chép (trị giá 1.5tr)',
+            'Luyện phản xạ cabin announcement, PA, safety',
+            'Bổ trợ tuyệt vời kết hợp với English HK'
+        ]
     },
     comboMatDat: {
-        name: 'Combo trọn gói mặt đất (đảm bảo việc làm)',
+        name: 'Combo Trọn Gói Mặt Đất',
         price: 35000000,
         priceLabel: '35.000.000đ',
-        note: 'Học không giới hạn tới khi có việc',
+        note: 'Đảm bảo có việc làm mặt đất — học không giới hạn',
         isMonthly: false,
-        months: 14
+        months: 14,
+        category: 'career',
+        tag: '💼 ĐẢM BẢO VIỆC LÀM',
+        subtitle: 'Đảm bảo có việc làm mặt đất',
+        perHour: '',
+        schedule: 'Học không giới hạn',
+        duration: 'Đến khi có việc',
+        highlight: 'Tiết kiệm 15 triệu — Đảm bảo việc làm 100%',
+        features: [
+            'TOEIC 500 + Giao tiếp — nền tảng vững chắc',
+            'Tiếng Anh chuyên Hàng Không',
+            'Luyện PV mặt đất 1-1 chuyên sâu',
+            'Học KHÔNG GIỚI HẠN từ TOEIC đến khi có việc',
+            'Hỗ trợ làm CV miễn phí 3 lần',
+            'Đồng hành làm hồ sơ ứng tuyển',
+            'Soạn sửa script phỏng vấn chi tiết',
+            'Mô phỏng interview + nhận xét qua video'
+        ]
     },
     comboTVHK: {
-        name: 'Trọn gói tiếp viên HK (đảm bảo)',
+        name: 'Trọn Gói Tiếp Viên Hàng Không',
         price: 45000000,
         priceLabel: '45.000.000đ',
-        note: 'Học không giới hạn tới khi có việc',
+        note: 'Đảm bảo có việc làm trong sân bay — học không giới hạn',
         isMonthly: false,
-        months: 14
+        months: 14,
+        category: 'career',
+        tag: '👑 PREMIUM — ĐẢM BẢO VIỆC LÀM',
+        subtitle: 'Đảm bảo có việc làm trong sân bay',
+        perHour: '',
+        schedule: 'Học không giới hạn',
+        duration: 'Đến khi có việc',
+        highlight: 'Trọn gói Premium — Bay cả đời!',
+        features: [
+            'TOEIC 600 + Giao tiếp nâng cao',
+            'Tiếng Anh chuyên Hàng Không',
+            'PV tiếp viên trong + ngoài nước',
+            'Học KHÔNG GIỚI HẠN đến khi có việc',
+            'Hỗ trợ thi mặt đất miễn phí (nếu chưa xin được)',
+            'Hỗ trợ làm CV miễn phí 3 lần',
+            'Đồng hành làm hồ sơ ứng tuyển',
+            'Mô phỏng interview + nhận xét qua video'
+        ]
     }
 };
+
+// ==============================
+// COURSE CATEGORIES for catalog
+// ==============================
+const COURSE_CATEGORIES = [
+    {
+        id: 'toeic_monthly',
+        title: 'TOEIC Theo Tháng',
+        icon: '🌙☀️',
+        desc: 'Đóng theo tháng, không cam kết — phù hợp bắt đầu',
+        packages: ['toeic12', 'toeic20']
+    },
+    {
+        id: 'toeic_full',
+        title: 'TOEIC Trọn Gói',
+        icon: '🎯',
+        desc: 'Học không giới hạn đến khi đạt mục tiêu',
+        packages: ['toeic500', 'toeic610']
+    },
+    {
+        id: 'giaotiep',
+        title: 'Giao Tiếp Thành Thạo',
+        icon: '💬',
+        desc: 'Nói lưu loát trong 6 tháng',
+        packages: ['giaotiep']
+    },
+    {
+        id: 'combo',
+        title: 'Combo TOEIC + Giao Tiếp',
+        icon: '💰',
+        desc: 'Tiết kiệm 7–10 triệu — có cả bằng lẫn kỹ năng nói',
+        packages: ['combo500gt', 'combo650gt']
+    },
+    {
+        id: 'chuyennganh',
+        title: 'Chuyên Ngành Hàng Không',
+        icon: '✈️',
+        desc: 'English HK + AI Practice — DUY NHẤT tại ORI',
+        packages: ['engHK', 'aiHK']
+    },
+
+    {
+        id: 'career',
+        title: 'Combo Trọn Gói Hàng Không',
+        icon: '👑',
+        desc: 'Đảm bảo việc làm — học đến khi có việc',
+        packages: ['comboMatDat', 'comboTVHK']
+    }
+];
 
 // ==============================
 // QUESTION DEFINITIONS (branching tree)
@@ -135,7 +338,7 @@ const QUESTIONS = {
         options: [
             { key: 'toeic', label: 'Luyện TOEIC lấy điểm', emoji: '🎯', next: 'q2_toeic' },
             { key: 'giaotiep', label: 'Giao tiếp tiếng Anh', emoji: '💬', next: 'q2_gt' },
-            { key: 'phongvan', label: 'Phỏng vấn hàng không', emoji: '✈️', next: 'q2_pv' },
+            { key: 'phongvan', label: 'Phỏng vấn hàng không', emoji: '✈️', next: null, externalLink: 'https://ori-interview-courses.replit.app' },
             { key: 'combo', label: 'TOEIC + Giao tiếp (cả hai)', emoji: '🔥', next: 'q2_combo' },
             { key: 'training', label: 'Sắp đi training hàng không', emoji: '🛫', next: 'q2_training' }
         ]
@@ -192,7 +395,7 @@ const QUESTIONS = {
             { key: 'travel', label: 'Du lịch / đời sống hàng ngày', emoji: '🌍', next: 'q3_gt_level' },
             { key: 'work', label: 'Công việc / văn phòng', emoji: '💼', next: 'q3_gt_level' },
             { key: 'aviation', label: 'Chuyên ngành hàng không (Aviation)', emoji: '✈️', next: 'q5_time' },
-            { key: 'interview', label: 'Chuẩn bị đi phỏng vấn', emoji: '🎤', next: 'q2_pv' }
+            { key: 'interview', label: 'Chuẩn bị đi phỏng vấn', emoji: '🎤', next: null, externalLink: 'https://ori-interview-courses.replit.app' }
         ]
     },
     q3_gt_level: {
@@ -206,37 +409,7 @@ const QUESTIONS = {
         ]
     },
 
-    // ---- Phỏng vấn branch ----
-    q2_pv: {
-        id: 'q2_pv',
-        title: 'Vị trí bạn muốn ứng tuyển?',
-        subtitle: '',
-        options: [
-            { key: 'matdat', label: 'Mặt đất (lounge, duty free, check-in)', emoji: '🏢', next: 'q3_pv_guarantee' },
-            { key: 'anninh', label: 'An ninh hàng không', emoji: '🛡️', next: 'q3_pv_guarantee' },
-            { key: 'tvhk_nd', label: 'Tiếp viên hãng nội địa', emoji: '🇻🇳', next: 'q3_pv_guarantee' },
-            { key: 'tvhk_qt', label: 'Tiếp viên hãng quốc tế', emoji: '🌏', next: 'q3_pv_guarantee' }
-        ]
-    },
-    q3_pv_guarantee: {
-        id: 'q3_pv_guarantee',
-        title: 'Bạn có muốn gói "đảm bảo việc làm"?',
-        subtitle: 'Học không giới hạn cho đến khi có việc',
-        options: [
-            { key: 'yes', label: 'Có – muốn đảm bảo, học đến khi có việc', emoji: '🛡️', next: 'q4_pv_when' },
-            { key: 'no', label: 'Không – chỉ cần luyện PV 1-1 là đủ', emoji: '🎯', next: 'q4_pv_when' }
-        ]
-    },
-    q4_pv_when: {
-        id: 'q4_pv_when',
-        title: 'Khi nào có đợt tuyển?',
-        subtitle: '',
-        options: [
-            { key: '2-3m', label: 'Trong 2–3 tháng tới', emoji: '⚡', next: 'q6_budget' },
-            { key: '3-6m', label: '3–6 tháng tới', emoji: '📅', next: 'q6_budget' },
-            { key: '6-12m', label: '6–12 tháng (chuẩn bị dài hạn)', emoji: '🗓️', next: 'q6_budget' }
-        ]
-    },
+
 
     // ---- Combo branch ----
     q2_combo: {
@@ -277,23 +450,21 @@ const QUESTIONS = {
         title: 'Bạn muốn đạt mục tiêu trong bao lâu?',
         subtitle: '',
         options: [
-            { key: '<4m', label: 'Dưới 4 tháng (gấp)', emoji: '⚡', next: 'q6_budget' },
-            { key: '4-6m', label: '4–6 tháng', emoji: '📅', next: 'q6_budget' },
-            { key: '6-12m', label: '6–12 tháng (ổn định)', emoji: '🗓️', next: 'q6_budget' }
+            { key: '<4m', label: 'Dưới 4 tháng (gấp)', emoji: '⚡', next: 'q6_value' },
+            { key: '4-6m', label: '4–6 tháng', emoji: '📅', next: 'q6_value' },
+            { key: '6-12m', label: '6–12 tháng (ổn định)', emoji: '🗓️', next: 'q6_value' }
         ]
     },
 
-    // ---- Common: Budget ----
-    q6_budget: {
-        id: 'q6_budget',
-        title: 'Ngân sách bạn có thể đầu tư?',
-        subtitle: 'Cho toàn bộ khóa học',
+    // ---- Common: Kết quả mong muốn (thay thế câu hỏi ngân sách) ----
+    q6_value: {
+        id: 'q6_value',
+        title: 'Bạn muốn đạt được kết quả nào sau khóa học?',
+        subtitle: 'Chọn mức kết quả bạn kỳ vọng — ORI sẽ tư vấn gói phù hợp nhất',
         options: [
-            { key: '<5tr', label: 'Dưới 5 triệu', emoji: '💰', next: null },
-            { key: '5-10tr', label: '5–10 triệu', emoji: '💰', next: null },
-            { key: '10-20tr', label: '10–20 triệu', emoji: '💎', next: null },
-            { key: '20-35tr', label: '20–35 triệu', emoji: '💎', next: null },
-            { key: '35tr+', label: '35 triệu trở lên', emoji: '👑', next: null }
+            { key: 'basic', label: 'Có bằng / chứng chỉ — đủ để bổ sung vào CV', emoji: '📜', next: null },
+            { key: 'premium', label: 'Có bằng + giao tiếp lưu loát — tự tin phỏng vấn bằng tiếng Anh', emoji: '🌟', next: null },
+            { key: 'ultimate', label: 'Có bằng + giao tiếp + được đảm bảo việc làm sau khóa học', emoji: '🚀', next: null }
         ]
     }
 };
@@ -318,6 +489,7 @@ const screens = {
     welcome: $('screen-welcome'),
     quiz: $('screen-quiz'),
     result: $('screen-result'),
+    catalog: $('screen-catalog'),
     contact: $('screen-contact'),
     success: $('screen-success')
 };
@@ -328,7 +500,212 @@ const screens = {
 function showScreen(name) {
     Object.values(screens).forEach(s => s.classList.remove('active'));
     screens[name].classList.add('active');
+    if (name === 'catalog') renderCatalog();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==============================
+// CATALOG & COURSE DETAIL
+// ==============================
+function renderCatalog() {
+    const container = $('catalog-content');
+    if (!container) return;
+
+    let html = '';
+    COURSE_CATEGORIES.forEach(cat => {
+        html += `
+        <div class="cat-section">
+            <div class="cat-header">
+                <span class="cat-icon">${cat.icon}</span>
+                <div>
+                    <h3 class="cat-title">${cat.title}</h3>
+                    <p class="cat-desc">${cat.desc}</p>
+                </div>
+            </div>
+            <div class="cat-packages">`;
+
+        cat.packages.forEach(pkgKey => {
+            const pkg = PACKAGES[pkgKey];
+            if (!pkg) return;
+            html += `
+            <div class="cat-pkg-card" onclick="openDetailModal('${pkgKey}')">
+                ${pkg.tag ? `<span class="cat-pkg-tag">${pkg.tag}</span>` : ''}
+                <div class="cat-pkg-name">${pkg.name}</div>
+                <div class="cat-pkg-subtitle">${pkg.subtitle || ''}</div>
+                <div class="cat-pkg-price">${pkg.priceLabel}</div>
+                ${pkg.perHour ? `<div class="cat-pkg-perhour">${pkg.perHour}</div>` : ''}
+                <div class="cat-pkg-highlight">${pkg.highlight || ''}</div>
+                <ul class="cat-pkg-features">
+                    ${(pkg.features || []).slice(0, 3).map(f => `<li>✅ ${f}</li>`).join('')}
+                </ul>
+                <div class="cat-pkg-cta">Xem chi tiết →</div>
+            </div>`;
+        });
+
+        html += `
+            </div>`;
+
+        // Comparison table for categories with 2+ packages
+        if (cat.packages.length >= 2) {
+            html += renderComparisonTable(cat);
+        }
+
+        html += `
+        </div>`;
+    });
+
+    container.innerHTML = html;
+}
+
+function renderComparisonTable(cat) {
+    const pkgs = cat.packages.map(k => PACKAGES[k]).filter(Boolean);
+    if (pkgs.length < 2) return '';
+
+    // Determine comparison rows based on category
+    let rows = [
+        { label: 'Giá', getValue: p => p.priceLabel },
+        { label: 'Thời lượng', getValue: p => p.duration || '—' },
+        { label: 'Lịch học', getValue: p => p.schedule || '—' }
+    ];
+
+    if (cat.id === 'toeic_monthly') {
+        rows.push(
+            { label: 'Số buổi/tháng', getValue: p => p.sessions || '—' },
+            { label: 'Giờ/tháng', getValue: p => p.totalHours || '—' },
+            { label: 'Chi phí/giờ', getValue: p => p.perHour || '—' }
+        );
+    } else if (cat.id === 'toeic_full') {
+        rows.push(
+            { label: 'Mục tiêu', getValue: p => p.tag || '—' },
+            { label: 'CV Support', getValue: p => p.note.includes('CV') ? '✅ Có' : '—' }
+        );
+    } else if (cat.id === 'combo') {
+        rows.push(
+            { label: 'Tiết kiệm', getValue: p => p.highlight || '—' },
+            { label: 'CV Support', getValue: p => '✅ Có' }
+        );
+    } else if (cat.id === 'career') {
+        rows.push(
+            { label: 'Cam kết', getValue: p => '✅ Đảm bảo việc làm' },
+            { label: 'Free CV', getValue: p => '✅ 3 lần' },
+            { label: 'Học giới hạn', getValue: p => '♾️ Không giới hạn' }
+        );
+    }
+
+    rows.push({ label: 'Nổi bật', getValue: p => p.highlight || '—' });
+
+    let html = `
+    <div class="compare-section">
+        <div class="compare-title">📊 So sánh nhanh</div>
+        <div class="compare-table-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        ${pkgs.map(p => `<th>${p.name}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows.map(r => `
+                        <tr>
+                            <td class="compare-label">${r.label}</td>
+                            ${pkgs.map(p => `<td>${r.getValue(p)}</td>`).join('')}
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+    </div>`;
+
+    return html;
+}
+
+function openDetailModal(pkgKey) {
+    const pkg = PACKAGES[pkgKey];
+    if (!pkg) return;
+
+    const modal = $('modal-detail');
+    const body = $('modal-body');
+
+    let html = `
+    <div class="detail-card">
+        ${pkg.tag ? `<span class="detail-tag">${pkg.tag}</span>` : ''}
+        <h2 class="detail-name">${pkg.name}</h2>
+        <p class="detail-subtitle">${pkg.subtitle || ''}</p>
+        <div class="detail-price">${pkg.priceLabel}</div>
+        ${pkg.perHour ? `<div class="detail-perhour">${pkg.perHour}</div>` : ''}
+
+        <div class="detail-meta">
+            <div class="detail-meta-item">
+                <span class="detail-meta-icon">📅</span>
+                <div>
+                    <div class="detail-meta-label">Lịch học</div>
+                    <div class="detail-meta-value">${pkg.schedule || '—'}</div>
+                </div>
+            </div>
+            <div class="detail-meta-item">
+                <span class="detail-meta-icon">⏱️</span>
+                <div>
+                    <div class="detail-meta-label">Thời lượng</div>
+                    <div class="detail-meta-value">${pkg.duration || '—'}</div>
+                </div>
+            </div>
+            ${pkg.isMonthly ? '' : `
+            <div class="detail-meta-item">
+                <span class="detail-meta-icon">💳</span>
+                <div>
+                    <div class="detail-meta-label">Thanh toán</div>
+                    <div class="detail-meta-value">Trả góp 5 lần (0% lãi)</div>
+                </div>
+            </div>`}
+        </div>
+
+        ${pkg.highlight ? `<div class="detail-highlight">${pkg.highlight}</div>` : ''}
+
+        <div class="detail-features">
+            <h3>✨ Quyền lợi chi tiết</h3>
+            <ul>
+                ${(pkg.features || []).map(f => `<li>✅ ${f}</li>`).join('')}
+            </ul>
+        </div>
+
+        ${!pkg.isMonthly && pkg.price >= 10000000 ? `
+        <div class="detail-installment">
+            <h3>💳 Trả góp 5 lần</h3>
+            <div class="installment-grid">
+                ${[1, 2, 3, 4, 5].map(i => {
+        const amount = Math.round(pkg.price / 5);
+        return `<div class="installment-step">
+                        <div class="installment-num">Lần ${i}</div>
+                        <div class="installment-amount">${amount.toLocaleString('vi-VN')}đ</div>
+                    </div>`;
+    }).join('')}
+            </div>
+        </div>` : ''}
+
+        <div class="detail-trial">
+            <h3>🎓 Chương trình học thử</h3>
+            <p>Học 1 tuần miễn phí (2 buổi) — không bắt buộc đăng ký. Hài lòng mới đăng ký!</p>
+        </div>
+
+        <div class="detail-actions">
+            <button class="btn btn-primary btn-glow" onclick="closeDetailModal(); showScreen('contact');">
+                Đăng ký tư vấn gói này
+                <span class="btn-arrow">→</span>
+            </button>
+            <a href="tel:0906303373" class="btn btn-secondary">📞 Gọi ngay: 0906 303 373</a>
+        </div>
+    </div>`;
+
+    body.innerHTML = html;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeDetailModal() {
+    const modal = $('modal-detail');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 // ==============================
@@ -383,6 +760,11 @@ function selectOption(questionId, option) {
 
     // Delay for visual feedback
     setTimeout(() => {
+        if (option.externalLink) {
+            // Redirect to external site for interview courses
+            window.open(option.externalLink, '_blank');
+            return;
+        }
         if (option.next === null) {
             // Quiz done → generate recommendation
             generateRecommendation();
@@ -422,6 +804,7 @@ function goBack() {
 function generateRecommendation() {
     const a = state.answers;
     const goal = a.q1;
+    const value = a.q6_value; // basic | premium | ultimate
     let rec = { best: null, backup: null, upsell: null, roadmap: [], payment: {} };
 
     // ---- TOEIC ----
@@ -429,90 +812,106 @@ function generateRecommendation() {
         const level = a.q2_toeic;
         const target = a.q3_toeic_target || a.q3_toeic_target_high;
         const schedule = a.q4_toeic_schedule;
-        const budget = a.q6_budget;
 
-        if (target === '500-600') {
-            if (schedule === 'unlimited' || budget === '10-20tr' || budget === '20-35tr' || budget === '35tr+') {
+        if (value === 'ultimate') {
+            // Muốn bằng + giao tiếp + việc làm → Combo + PV đảm bảo
+            const combo = target === '500-600' ? PACKAGES.combo500gt : PACKAGES.combo650gt;
+            rec.best = {
+                pkg: combo,
+                reasons: [
+                    'Kết hợp TOEIC + Giao tiếp phản xạ — nâng toàn diện cả bằng lẫn kỹ năng nói',
+                    'Học không giới hạn trong 14 tháng hoặc đến khi đạt mục tiêu',
+                    'Tặng kèm tư vấn CV — chuẩn bị sẵn sàng ứng tuyển ngay sau khi hoàn thành'
+                ]
+            };
+            rec.backup = {
+                pkg: target === '500-600' ? PACKAGES.toeic500 : PACKAGES.toeic610,
+                reason: 'Nếu muốn tập trung TOEIC trước, lên giao tiếp sau'
+            };
+            rec.upsell = {
+                pkg: PACKAGES.comboMatDat, reasons: [
+                    'Muốn đảm bảo việc làm? Trọn gói mặt đất — học đến khi có việc',
+                    'Bao gồm luyện PV, CV chuyên nghiệp, English — yên tâm 100%'
+                ]
+            };
+        } else if (value === 'premium') {
+            // Muốn bằng + giao tiếp → Combo TOEIC + GT
+            const combo = target === '500-600' ? PACKAGES.combo500gt : PACKAGES.combo650gt;
+            rec.best = {
+                pkg: combo,
+                reasons: [
+                    'Combo hoàn hảo: vừa có điểm TOEIC, vừa nói lưu loát',
+                    'Tiết kiệm hơn mua riêng từng gói — học cả hai song song',
+                    'Giao tiếp tốt + TOEIC cao = profile hoàn thiện cho mọi cơ hội'
+                ]
+            };
+            rec.backup = {
+                pkg: target === '500-600' ? PACKAGES.toeic500 : PACKAGES.toeic610,
+                reason: 'Nếu muốn lấy bằng TOEIC trước, bổ sung giao tiếp sau'
+            };
+            rec.upsell = {
+                pkg: PACKAGES.comboMatDat, reasons: [
+                    'Muốn đảm bảo việc làm? Trọn gói mặt đất — học đến khi có việc',
+                    'Bao gồm luyện PV, CV, English — yên tâm 100%'
+                ]
+            };
+        } else {
+            // basic: Muốn có bằng
+            const time = a.q5_time;
+            const isShortTimeline = (time === '<4m' || time === '4-6m');
+
+            if (isShortTimeline) {
+                // Dưới 6 tháng → luôn đề xuất 2 gói lẻ
+                rec.best = {
+                    pkg: PACKAGES.toeic20,
+                    reasons: [
+                        '5 buổi/tuần — tiến độ nhanh nhất, phù hợp mục tiêu ngắn hạn',
+                        'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu',
+                        'Có test đánh giá mỗi cuối tháng',
+                        'Chỉ ≈76.000đ/giờ — rẻ nhất thị trường!'
+                    ]
+                };
+                rec.backup = {
+                    pkg: PACKAGES.toeic12,
+                    reason: 'Nếu bận buổi sáng → lớp buổi tối 3 buổi/tuần, chỉ 1.600.000đ/tháng'
+                };
+                rec.upsell = {
+                    pkg: target === '500-600' ? PACKAGES.toeic500 : PACKAGES.toeic610,
+                    reasons: [
+                        'Nếu muốn cam kết lâu dài: trọn gói 14 tháng — bình quân rẻ hơn gói lẻ!',
+                        'Học không giới hạn đến khi đạt mục tiêu + tặng tư vấn CV'
+                    ]
+                };
+            } else if (target === '500-600') {
                 rec.best = {
                     pkg: PACKAGES.toeic500,
                     reasons: [
-                        '14 tháng không giới hạn – học đến khi đạt mục tiêu',
-                        'Bình quân chỉ ~857.000đ/tháng – rẻ hơn học lẻ theo tháng!',
-                        'Phù hợp mục tiêu 500–600, tặng kèm tư vấn CV + thiết kế CV'
+                        '14 tháng không giới hạn — yên tâm học đến khi đạt mục tiêu 500–600',
+                        'Bình quân chỉ ~857.000đ/tháng — rẻ hơn học lẻ từng tháng!',
+                        'Tặng kèm tư vấn CV + thiết kế CV miễn phí'
                     ]
                 };
-                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu muốn trả theo tháng, linh hoạt hơn' };
+                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu muốn bắt đầu nhẹ, trả theo tháng trước' };
                 rec.upsell = {
                     pkg: PACKAGES.combo500gt, reasons: [
-                        'Kết hợp TOEIC 500–600 + Giao tiếp phản xạ chỉ 20tr (tiết kiệm 7tr)',
-                        'Giao tiếp tốt sẽ giúp phỏng vấn tự tin hơn'
-                    ]
-                };
-            } else if (budget === '5-10tr' || schedule === '20bth') {
-                rec.best = {
-                    pkg: PACKAGES.toeic20,
-                    reasons: [
-                        '20 buổi/tháng = 5 buổi/tuần, cường độ cao kịp mục tiêu',
-                        'Phù hợp ngân sách 5–10 triệu',
-                        'Trả theo tháng, không cần đóng lớn 1 lần'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic12, reason: 'Nếu ngân sách eo hẹp hơn, chấp nhận lộ trình chậm hơn' };
-                rec.upsell = {
-                    pkg: PACKAGES.toeic500, reasons: [
-                        'Trọn gói 12tr tiết kiệm hơn nếu học dài hạn',
-                        'Tặng tư vấn CV + thiết kế CV 1 lần'
+                        'Nâng cấp lên Combo: TOEIC + Giao tiếp — biết nói tự tin hơn chỉ có bằng',
+                        'Giao tiếp lưu loát là lợi thế mà bằng cấp không thể thay thế!'
                     ]
                 };
             } else {
-                rec.best = {
-                    pkg: PACKAGES.toeic12,
-                    reasons: [
-                        'Chi phí thấp nhất: 1.600.000đ/tháng',
-                        '12 buổi/tháng đủ để duy trì tiến bộ',
-                        'Phù hợp ngân sách dưới 5 triệu'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu có thể tăng budget, 20 buổi/tháng sẽ tiến nhanh hơn' };
-                rec.upsell = {
-                    pkg: PACKAGES.toeic500, reasons: [
-                        'Nếu gom đủ ngân sách, trọn gói 12tr tiết kiệm dài hạn',
-                        'Tặng tư vấn CV + thiết kế CV miễn phí'
-                    ]
-                };
-            }
-        } else {
-            // Target 610-750 or 700+
-            if (budget === '10-20tr' || budget === '20-35tr' || budget === '35tr+' || schedule === 'unlimited') {
                 rec.best = {
                     pkg: PACKAGES.toeic610,
                     reasons: [
-                        '14 tháng không giới hạn – phù hợp target cao 610–750',
-                        'Bình quân chỉ ~1.071.000đ/tháng – tiết kiệm hơn học lẻ!',
-                        'Học với giáo viên chuyên luyện band cao, tặng tư vấn CV'
+                        '14 tháng không giới hạn — phù hợp target cao 610–750',
+                        'Bình quân chỉ ~1.071.000đ/tháng — tiết kiệm hơn học lẻ!',
+                        'Giáo viên chuyên luyện band cao, tặng tư vấn CV'
                     ]
                 };
-                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu muốn trả theo tháng thay vì đóng 1 lần' };
+                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu muốn bắt đầu nhẹ, trả theo tháng trước' };
                 rec.upsell = {
                     pkg: PACKAGES.combo650gt, reasons: [
-                        'Combo TOEIC 650+ kèm Giao tiếp phản xạ chỉ 25tr (tiết kiệm 5tr)',
-                        'Nâng cả TOEIC lẫn kỹ năng nói – hoàn thiện profile'
-                    ]
-                };
-            } else {
-                rec.best = {
-                    pkg: PACKAGES.toeic20,
-                    reasons: [
-                        '20 buổi/tháng giúp luyện chuyên sâu, phù hợp target cao',
-                        'Trả theo tháng, linh hoạt ngân sách',
-                        'Phù hợp khi chưa sẵn sàng đóng trọn gói'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic12, reason: 'Nếu ngân sách hạn chế, 12 buổi/tháng vẫn tiến bộ' };
-                rec.upsell = {
-                    pkg: PACKAGES.toeic610, reasons: [
-                        'Trọn gói 15tr tiết kiệm hơn dài hạn, không lo giới hạn buổi',
-                        'Tặng tư vấn CV + thiết kế CV 1 lần'
+                        'Nâng lên Combo TOEIC 650+ kèm Giao tiếp — nói lưu loát + điểm cao',
+                        'Profile hoàn thiện cho ứng tuyển hãng quốc tế!'
                     ]
                 };
             }
@@ -523,58 +922,74 @@ function generateRecommendation() {
         // ---- GIAO TIẾP ----
     } else if (goal === 'giaotiep') {
         const gtGoal = a.q2_gt;
-        const budget = a.q6_budget;
 
         if (gtGoal === 'aviation') {
             rec.best = {
                 pkg: PACKAGES.engHK,
                 reasons: [
                     'Chuyên biệt cho ngành hàng không: từ vựng cabin, PA, safety',
-                    'Hoàn thành trong 2 tháng – phù hợp trước training',
+                    'Hoàn thành trong 2 tháng — phù hợp trước training',
                     'Giáo viên có kinh nghiệm ngành bay'
                 ]
             };
             rec.backup = { pkg: PACKAGES.giaotiep, reason: 'Nếu muốn nâng giao tiếp tổng hợp kèm chuyên ngành' };
             rec.upsell = {
                 pkg: PACKAGES.aiHK, reasons: [
-                    'Thêm 10 buổi AI practice chỉ 3tr – luyện phản xạ tình huống thực',
-                    'Kết hợp English HK + AI = chuẩn bị toàn diện'
+                    'Thêm AI practice luyện phản xạ tình huống thực tế',
+                    'English HK + AI = chuẩn bị toàn diện trước training'
+                ]
+            };
+        } else if (value === 'ultimate') {
+            // Muốn giao tiếp + bằng + việc làm → Combo + PV
+            rec.best = {
+                pkg: PACKAGES.combo500gt,
+                reasons: [
+                    'Combo TOEIC + Giao tiếp — có cả bằng lẫn kỹ năng nói thực tế',
+                    'Học không giới hạn trong 14 tháng — không lo bị giới hạn',
+                    'Tặng tư vấn CV — sẵn sàng ứng tuyển ngay khi hoàn thành'
+                ]
+            };
+            rec.backup = { pkg: PACKAGES.giaotiep, reason: 'Nếu muốn tập trung giao tiếp trước' };
+            rec.upsell = {
+                pkg: PACKAGES.comboMatDat, reasons: [
+                    'Muốn đảm bảo có việc? Trọn gói mặt đất — học đến khi có việc',
+                    'Bao gồm PV + English + CV — an tâm 100%'
+                ]
+            };
+        } else if (value === 'premium') {
+            // Muốn bằng + giao tiếp lưu loát → Combo
+            rec.best = {
+                pkg: PACKAGES.combo500gt,
+                reasons: [
+                    'Combo hoàn hảo: TOEIC lấy bằng + Giao tiếp phản xạ lưu loát',
+                    'Tiết kiệm hơn mua riêng — có cả hai cùng lúc',
+                    'Giao tiếp lưu loát + điểm TOEIC = hồ sơ ấn tượng'
+                ]
+            };
+            rec.backup = { pkg: PACKAGES.giaotiep, reason: 'Nếu muốn tập trung giao tiếp trước, bổ sung TOEIC sau' };
+            rec.upsell = {
+                pkg: PACKAGES.combo650gt, reasons: [
+                    'Nâng lên Combo 650+ — điểm TOEIC cao hơn cho cơ hội tốt hơn',
+                    'Profile mạnh mẽ khi apply hãng quốc tế'
                 ]
             };
         } else {
-            if (budget === '10-20tr' || budget === '20-35tr' || budget === '35tr+') {
-                rec.best = {
-                    pkg: PACKAGES.giaotiep,
-                    reasons: [
-                        '6 tháng giao tiếp phản xạ – bình quân chỉ 2.500.000đ/tháng!',
-                        'Phương pháp ORI độc quyền, học đều nghỉ ≤10% được tặng thêm 2 tháng',
-                        'Phù hợp cho cả du lịch, công việc và đời sống'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic12, reason: 'Nếu ngân sách hạn chế, bắt đầu TOEIC cơ bản + tự luyện nói' };
-                rec.upsell = {
-                    pkg: PACKAGES.combo500gt, reasons: [
-                        'Kết hợp Giao tiếp + TOEIC 500–600 chỉ 20tr – bổ sung điểm TOEIC cho CV',
-                        'Combo tiết kiệm hơn mua riêng từng gói'
-                    ]
-                };
-            } else {
-                rec.best = {
-                    pkg: PACKAGES.toeic12,
-                    reasons: [
-                        'Bắt đầu với TOEIC 12 buổi/tháng để xây nền tảng',
-                        'Chi phí chỉ 1.600.000đ/tháng – phù hợp ngân sách',
-                        'Nâng nền tảng trước, lên giao tiếp sau khi sẵn sàng'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu muốn tiến nhanh hơn với 20 buổi/tháng' };
-                rec.upsell = {
-                    pkg: PACKAGES.giaotiep, reasons: [
-                        'Khi ngân sách cho phép, Giao tiếp phản xạ 15tr là lựa chọn tốt nhất',
-                        'Tặng thêm 2 tháng nếu học chuyên cần'
-                    ]
-                };
-            }
+            // basic: Chỉ muốn giao tiếp
+            rec.best = {
+                pkg: PACKAGES.giaotiep,
+                reasons: [
+                    '6 tháng giao tiếp phản xạ — bình quân chỉ 2.500.000đ/tháng',
+                    'Phương pháp ORI độc quyền, nghỉ ≤10% được tặng thêm 2 tháng',
+                    'Phù hợp cho du lịch, công việc và đời sống hàng ngày'
+                ]
+            };
+            rec.backup = { pkg: PACKAGES.toeic12, reason: 'Nếu muốn bắt đầu nhẹ với nền tảng TOEIC trước' };
+            rec.upsell = {
+                pkg: PACKAGES.combo500gt, reasons: [
+                    'Thêm bằng TOEIC — giao tiếp giỏi + có bằng = profile vượt trội!',
+                    'Combo tiết kiệm hơn mua riêng từng gói'
+                ]
+            };
         }
 
         rec.roadmap = [
@@ -583,145 +998,67 @@ function generateRecommendation() {
             { phase: 'GĐ3 (Tháng 5–6)', desc: 'Phản xạ nâng cao, debate, presentation, thực hành thực tế' }
         ];
 
-        // ---- PHỎNG VẤN HK ----
-    } else if (goal === 'phongvan') {
-        const position = a.q2_pv;
-        const guarantee = a.q3_pv_guarantee;
-        const budget = a.q6_budget;
-
-        if (position === 'matdat' || position === 'anninh') {
-            if (guarantee === 'yes' && (budget === '20-35tr' || budget === '35tr+')) {
-                rec.best = {
-                    pkg: PACKAGES.comboMatDat,
-                    reasons: [
-                        'Học không giới hạn cho đến khi có việc – cam kết đảm bảo',
-                        'Bao gồm luyện PV, CV, English, kỹ năng mềm',
-                        'An tâm đầu tư 1 lần, không lo tốn thêm nếu trượt'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.pvMatDat, reason: 'Nếu tự tin 12 buổi PV 1-1 là đủ, chỉ cần 5tr' };
-            } else {
-                rec.best = {
-                    pkg: PACKAGES.pvMatDat,
-                    reasons: [
-                        'PV 1-1 chuyên mặt đất: lounge, duty free, check-in, an ninh',
-                        '12 buổi với coach riêng, đảm bảo +10tr nếu không đậu',
-                        'Tặng free thiết kế CV 1 lần'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.comboMatDat, reason: 'Nếu muốn đảm bảo 100%, học tới khi có việc' };
-            }
-            rec.upsell = {
-                pkg: PACKAGES.toeic12, reasons: [
-                    'Nhiều vị trí mặt đất yêu cầu TOEIC ≥ 450, thêm TOEIC bổ trợ hồ sơ',
-                    'Chi phí chỉ 1.600.000đ/tháng, học song song PV dễ dàng'
-                ]
-            };
-            rec.roadmap = [
-                { phase: 'GĐ1 (Tuần 1–3)', desc: 'CV + hồ sơ, PV cơ bản: tự giới thiệu, motivation, tại sao HK' },
-                { phase: 'GĐ2 (Tuần 4–6)', desc: 'PV tình huống: handling passengers, teamwork, conflict resolution' },
-                { phase: 'GĐ3 (Tuần 7–8+)', desc: 'Mock interview, phản hồi chi tiết, chỉnh sửa, sẵn sàng thi' }
-            ];
-        } else {
-            // Tiếp viên
-            if (guarantee === 'yes' && (budget === '35tr+' || budget === '20-35tr')) {
-                rec.best = {
-                    pkg: PACKAGES.comboTVHK,
-                    reasons: [
-                        'Học không giới hạn – apply bao nhiêu hãng cũng được',
-                        'Full support: PV nội địa + quốc tế, CV, grooming, video',
-                        'Cam kết đảm bảo việc làm – đầu tư 1 lần'
-                    ]
-                };
-                rec.backup = {
-                    pkg: position === 'tvhk_qt' ? PACKAGES.pvTvhkFull : PACKAGES.pvTvhkTrong,
-                    reason: position === 'tvhk_qt' ? 'Nếu tự tin 30 buổi là đủ, đảm bảo +10tr, free CV 5 lần' : 'Nếu chỉ apply hãng nội địa, 20 buổi + đảm bảo +10tr'
-                };
-            } else if (position === 'tvhk_qt') {
-                rec.best = {
-                    pkg: PACKAGES.pvTvhkFull,
-                    reasons: [
-                        '30 buổi PV 1-1 cho cả hãng trong nước và quốc tế',
-                        'Đảm bảo hoàn tiền +10tr nếu không đậu',
-                        'Free CV 5 lần – chuẩn bị hồ sơ cho nhiều hãng'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.pvTvhkTrong, reason: 'Nếu muốn bắt đầu với hãng nội địa trước' };
-                rec.upsell = {
-                    pkg: PACKAGES.comboTVHK, reasons: [
-                        'Trọn gói đảm bảo 45tr – an tâm apply không giới hạn',
-                        'Tiết kiệm vs mua nhiều gói PV riêng lẻ'
-                    ]
-                };
-            } else {
-                rec.best = {
-                    pkg: PACKAGES.pvTvhkTrong,
-                    reasons: [
-                        '20 buổi PV 1-1 chuyên hãng nội địa (VNA, VJ, Bamboo...)',
-                        'Đảm bảo hoàn tiền +10tr nếu không đậu',
-                        'Free CV 2 lần'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.pvMatDat, reason: 'Nếu cũng quan tâm vị trí mặt đất, chỉ 5tr/12 buổi' };
-                rec.upsell = {
-                    pkg: PACKAGES.pvTvhkFull, reasons: [
-                        'Nâng lên gói quốc tế 15tr nếu muốn apply thêm hãng ngoài',
-                        'Free CV 5 lần, đảm bảo +10tr'
-                    ]
-                };
-            }
-            rec.roadmap = [
-                { phase: 'GĐ1 (Tháng 1–3)', desc: 'Xây nền tảng: English giao tiếp, từ vựng HK, CV & hồ sơ' },
-                { phase: 'GĐ2 (Tháng 4–7)', desc: 'PV chuyên sâu: group discussion, final interview, grooming' },
-                { phase: 'GĐ3 (Tháng 8–12)', desc: 'Thực chiến apply hãng, mock interview theo từng hãng' }
-            ];
-            if (!rec.upsell) {
-                rec.upsell = {
-                    pkg: PACKAGES.aiHK, reasons: [
-                        'Luyện thêm AI practice cho cabin announcement, PA, safety',
-                        'Bổ trợ tuyệt vời trong thời gian chờ giữa các đợt tuyển'
-                    ]
-                };
-            }
-        }
 
         // ---- COMBO TOEIC + GT ----
     } else if (goal === 'combo') {
         const comboTarget = a.q3_combo_target;
-        const budget = a.q6_budget;
 
-        if (comboTarget === 'combo500') {
+        if (value === 'ultimate') {
+            // Muốn tất cả: bằng + nói + việc → Combo + PV đảm bảo
+            const combo = comboTarget === 'combo500' ? PACKAGES.combo500gt : PACKAGES.combo650gt;
             rec.best = {
-                pkg: PACKAGES.combo500gt,
+                pkg: combo,
                 reasons: [
-                    'Kết hợp TOEIC 500–600 + Giao tiếp trong 1 gói tiết kiệm',
-                    'Chỉ 20tr vs mua riêng: Trọn gói 12tr + GT 15tr = 27tr',
-                    'Nâng cả điểm thi lẫn kỹ năng nói – hoàn thiện profile'
+                    'Combo TOEIC + Giao tiếp — có cả bằng lẫn kỹ năng nói',
+                    'Học không giới hạn trong 14 tháng hoặc đến khi đạt mục tiêu',
+                    'Tặng tư vấn CV — sẵn sàng ứng tuyển ngay khi hoàn thành'
                 ]
             };
-            rec.backup = { pkg: PACKAGES.toeic500, reason: 'Nếu muốn tập trung TOEIC trước, 12tr + free CV' };
+            rec.backup = {
+                pkg: comboTarget === 'combo500' ? PACKAGES.toeic500 : PACKAGES.toeic610,
+                reason: 'Nếu muốn tập trung TOEIC trước'
+            };
             rec.upsell = {
-                pkg: PACKAGES.pvMatDat, reasons: [
-                    'Nếu muốn apply mặt đất, thêm PV 1-1 chỉ 5tr',
-                    'Bộ 3 hoàn hảo: TOEIC + Giao tiếp + PV'
+                pkg: PACKAGES.comboMatDat, reasons: [
+                    'Muốn đảm bảo việc làm? Trọn gói mặt đất — học đến khi có việc',
+                    'Bao gồm tất cả: PV + English + CV — yên tâm tuyệt đối'
                 ]
             };
         } else {
-            rec.best = {
-                pkg: PACKAGES.combo650gt,
-                reasons: [
-                    'Combo TOEIC 650–700+ & Giao tiếp – mạnh mẽ nhất',
-                    'Chỉ 25tr vs mua riêng: 15tr + 15tr = 30tr (tiết kiệm 5tr)',
-                    'Phù hợp apply hãng quốc tế cần cả điểm + speaking'
-                ]
-            };
-            rec.backup = { pkg: PACKAGES.toeic610, reason: 'Nếu muốn tập trung TOEIC trước, 15tr + free CV' };
-            rec.upsell = {
-                pkg: PACKAGES.pvTvhkTrong, reasons: [
-                    'Muốn apply tiếp viên? Thêm PV 1-1 trong nước 10tr/20 buổi',
-                    'Đảm bảo +10tr nếu không đậu, free CV 2 lần'
-                ]
-            };
+            // premium & basic → vẫn recommend combo (vì user đã chọn combo)
+            if (comboTarget === 'combo500') {
+                rec.best = {
+                    pkg: PACKAGES.combo500gt,
+                    reasons: [
+                        'Kết hợp TOEIC 500–600 + Giao tiếp trong 1 gói tiết kiệm',
+                        'Tiết kiệm hơn mua riêng từng gói — học cả hai song song',
+                        'Nâng cả điểm thi lẫn kỹ năng nói — hoàn thiện profile'
+                    ]
+                };
+                rec.backup = { pkg: PACKAGES.toeic500, reason: 'Nếu muốn tập trung TOEIC trước, free CV' };
+                rec.upsell = {
+                    pkg: PACKAGES.comboMatDat, reasons: [
+                        'Muốn đảm bảo việc làm? Trọn gói mặt đất — học đến khi có việc',
+                        'Bao gồm PV + English + CV — yên tâm 100%'
+                    ]
+                };
+            } else {
+                rec.best = {
+                    pkg: PACKAGES.combo650gt,
+                    reasons: [
+                        'Combo TOEIC 650–700+ & Giao tiếp — gói mạnh mẽ nhất',
+                        'Tiết kiệm hơn mua riêng — có cả điểm cao lẫn kỹ năng nói',
+                        'Phù hợp apply hãng quốc tế cần cả điểm + speaking'
+                    ]
+                };
+                rec.backup = { pkg: PACKAGES.toeic610, reason: 'Nếu muốn tập trung TOEIC trước, free CV' };
+                rec.upsell = {
+                    pkg: PACKAGES.comboTVHK, reasons: [
+                        'Muốn apply tiếp viên? Trọn gói TVHK — học đến khi có việc',
+                        'Full support: PV + CV + grooming + English'
+                    ]
+                };
+            }
         }
 
         rec.roadmap = [
@@ -854,6 +1191,23 @@ function renderResult(rec) {
         </div>`;
     }
 
+    // Auto-show interview link if any trọn gói is recommended
+    const hasFullPackage = [
+        rec.best && rec.best.pkg,
+        rec.backup && rec.backup.pkg,
+        rec.upsell && rec.upsell.pkg
+    ].some(pkg => pkg && !pkg.isMonthly);
+
+    if (hasFullPackage) {
+        html += `
+        <div class="pkg-card interview-link" style="border: 1px solid rgba(0,200,255,0.3); background: linear-gradient(135deg, rgba(0,200,255,0.08), rgba(100,50,255,0.08)); cursor: pointer;" onclick="window.open('https://ori-interview-courses.replit.app', '_blank')">
+            <span class="pkg-badge" style="background: linear-gradient(135deg, #00c8ff, #6432ff); color: #fff;">✈️ Luyện PV Chuyên Nghiệp</span>
+            <div class="pkg-name">✈️ Tiếng Anh Phỏng Vấn Hàng Không 1-1</div>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin:6px 0;">Coaching PV chuyên nghiệp: mặt đất, tiếp viên nội địa & quốc tế — đảm bảo +10tr nếu không đậu</p>
+            <div style="font-size:0.85rem;color:#00c8ff;margin-top:8px;font-weight:600;">Xem chi tiết gói PV →</div>
+        </div>`;
+    }
+
     // Roadmap
     if (rec.roadmap.length > 0) {
         html += `
@@ -931,7 +1285,7 @@ function buildFormSummary() {
     if (a.q2_training) lines.push(`🛫 Loại training: ${getAnswerLabel('q2_training', a.q2_training)}`);
     if (a.q3_combo_target) lines.push(`📦 Combo: ${getAnswerLabel('q3_combo_target', a.q3_combo_target)}`);
     if (a.q5_time) lines.push(`⏱️ Thời gian: ${getAnswerLabel('q5_time', a.q5_time)}`);
-    if (a.q6_budget) lines.push(`💰 Ngân sách: ${getAnswerLabel('q6_budget', a.q6_budget)}`);
+    if (a.q6_value) lines.push(`🎯 Kỳ vọng: ${getAnswerLabel('q6_value', a.q6_value)}`);
     // Payment info from recommendation (no longer a quiz question)
     if (rec.payment.type === 'monthly') {
         lines.push(`💳 Thanh toán: Đóng theo tháng`);
@@ -975,7 +1329,7 @@ async function submitToGoogleSheets(formData) {
         guarantee: a.q3_pv_guarantee ? getAnswerLabel('q3_pv_guarantee', a.q3_pv_guarantee) : '—',
         timeline: a.q5_time ? getAnswerLabel('q5_time', a.q5_time) :
             a.q4_pv_when ? getAnswerLabel('q4_pv_when', a.q4_pv_when) : '—',
-        budget: a.q6_budget ? getAnswerLabel('q6_budget', a.q6_budget) : '—',
+        budget: a.q6_value ? getAnswerLabel('q6_value', a.q6_value) : '—',
         payment: rec.payment.type === 'monthly' ? 'Đóng theo tháng' : 'Trọn gói (trả 1 lần / trả góp 5 lần)',
         recommendedPackage: rec.best.pkg.name + ' – ' + rec.best.pkg.priceLabel,
         note: formData.note || '',
