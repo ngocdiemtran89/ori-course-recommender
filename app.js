@@ -458,14 +458,14 @@ const QUESTIONS = {
         ]
     },
 
-    // ---- Training HK branch ----
+    // ---- ĐẢM BẢO VIỆC LÀM branch ----
     q2_training: {
         id: 'q2_training',
-        title: 'Bạn cần hỗ trợ gì cho training?',
-        subtitle: '',
+        title: 'Bạn muốn ứng tuyển vị trí nào?',
+        subtitle: 'ORI đảm bảo việc làm — học đến khi có việc',
         options: [
-            { key: 'eng_only', label: 'Chỉ English chuyên hàng không', emoji: '📖', next: 'q5_time' },
-            { key: 'eng_ai', label: 'English chuyên HK + AI practice', emoji: '🤖', next: 'q5_time' }
+            { key: 'mat_dat', label: 'Nhân viên mặt đất sân bay', emoji: '🛣️', next: null },
+            { key: 'tiep_vien', label: 'Tiếp viên hàng không', emoji: '✈️', next: null }
         ]
     },
 
@@ -1033,41 +1033,50 @@ function generateRecommendation() {
 
         // ---- TRAINING HK ----
     } else if (goal === 'training') {
-        const trainingType = a.q2_training;
+        // ĐẢM BẢO VIỆC LÀM — hiện thẳng gói 35tr hoặc 45tr
+        const careerType = a.q2_training;
 
-        if (trainingType === 'eng_ai') {
+        if (careerType === 'tiep_vien') {
             rec.best = {
-                pkg: { name: 'English chuyên HK + AI Practice', price: 13000000, priceLabel: '13.000.000đ (10tr + 3tr)', note: 'English chuyên HK 2 tháng + AI 10 buổi' },
+                pkg: PACKAGES.comboTVHK,
                 reasons: [
-                    'English chuyên HK: từ vựng cabin, PA, briefing, safety',
-                    'AI practice: luyện phản xạ tình huống thực tế bằng AI',
-                    'Tổng 13tr – hoàn thành trong 2 tháng trước training'
+                    'Trọn gói Tiếp Viên Hàng Không — đảm bảo việc làm 100%',
+                    'TOEIC 600 + Giao tiếp nâng cao + English chuyên HK',
+                    'Học KHÔNG GIỚI HẠN đến khi có việc',
+                    'Luyện PV tiếp viên trong + ngoài nước',
+                    'Hỗ trợ CV, hồ sơ, mô phỏng interview',
+                    '🎓 Học thử 2 buổi MIỄN PHÍ'
                 ]
             };
-            rec.backup = { pkg: PACKAGES.engHK, reason: 'Nếu chỉ cần core English HK, tiết kiệm 3tr' };
+            rec.backup = {
+                pkg: PACKAGES.comboMatDat,
+                reason: 'Muốn bắt đầu từ mặt đất? Gói 35tr cũng đảm bảo việc làm 100%'
+            };
         } else {
             rec.best = {
-                pkg: PACKAGES.engHK,
+                pkg: PACKAGES.comboMatDat,
                 reasons: [
-                    'Chuyên biệt cho ngành hàng không: từ vựng thực tế',
-                    '2 tháng hoàn thành – kịp trước training',
-                    'Giáo viên có kinh nghiệm ngành bay'
+                    'Trọn gói Mặt Đất — đảm bảo việc làm 100%',
+                    'TOEIC 500 + Giao tiếp + Tiếng Anh chuyên HK',
+                    'Học KHÔNG GIỚI HẠN từ TOEIC đến khi có việc',
+                    'Luyện PV mặt đất 1-1 chuyên sâu',
+                    'Hỗ trợ làm CV miễn phí 3 lần',
+                    '🎓 Học thử 2 buổi MIỄN PHÍ'
                 ]
             };
-            rec.backup = { pkg: PACKAGES.aiHK, reason: 'Nếu đã có nền tảng, chỉ cần AI practice 3tr/10 buổi' };
+            rec.backup = {
+                pkg: PACKAGES.comboTVHK,
+                reason: 'Muốn nhắm tiếp viên? Gói 45tr bao gồm PV cả trong + ngoài nước'
+            };
         }
 
-        rec.upsell = {
-            pkg: PACKAGES.giaotiep, reasons: [
-                'Sau training muốn nâng giao tiếp tổng thể, GT phản xạ 15tr/6th',
-                'Học đều nghỉ ≤10% được tặng thêm 2 tháng (tổng 8 tháng)'
-            ]
-        };
+        rec.upsell = null; // Không cần upsell — đã là gói cao nhất
 
         rec.roadmap = [
-            { phase: 'GĐ1 (Tháng 1)', desc: 'Từ vựng chuyên ngành HK, PA phrase, cabin crew communication' },
-            { phase: 'GĐ2 (Tháng 2)', desc: 'Tình huống thực tế: emergency, service, complaint + AI practice' },
-            { phase: 'Sau training', desc: 'Tùy chọn: Giao tiếp phản xạ để nâng tổng hợp' }
+            { phase: 'GĐ1 (Tháng 1–4)', desc: 'TOEIC chuyên sâu: nền tảng ngữ pháp, từ vựng, luyện đề' },
+            { phase: 'GĐ2 (Tháng 5–8)', desc: 'Giao tiếp phản xạ + Tiếng Anh chuyên HK + Thi TOEIC chính thức' },
+            { phase: 'GĐ3 (Tháng 9–12)', desc: 'Luyện PV chuyên sâu + Làm hồ sơ + Ứng tuyển thực tế' },
+            { phase: 'Đầu ra', desc: '✅ Có việc làm trong sân bay — ORI đảm bảo!' }
         ];
     }
 
