@@ -856,65 +856,54 @@ function generateRecommendation() {
                 ]
             };
         } else {
-            // basic: Muốn có bằng
+            // basic: Muốn có bằng → LUÔN gợi ý gói tháng trước (không sốc giá)
             const time = a.q5_time;
+            const schedule = a.q4_toeic_schedule;
             const isShortTimeline = (time === '<4m' || time === '4-6m');
+            const wantsMorning = (schedule === '20bth');
 
-            if (isShortTimeline) {
-                // Dưới 6 tháng → luôn đề xuất 2 gói lẻ
+            // Gợi ý chính: GÓI THÁNG (nhẹ nhàng, dễ quyết định)
+            if (wantsMorning) {
                 rec.best = {
                     pkg: PACKAGES.toeic20,
                     reasons: [
-                        '5 buổi/tuần — tiến độ nhanh nhất, phù hợp mục tiêu ngắn hạn',
-                        'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu',
-                        'Có test đánh giá mỗi cuối tháng',
-                        'Chỉ ≈76.000đ/giờ — rẻ nhất thị trường!'
+                        '5 buổi/tuần buổi sáng — tiến độ nhanh nhất',
+                        'Chỉ 2.300.000đ/tháng — đóng tháng nào học tháng đó',
+                        'Không cần cam kết dài hạn — nghỉ bất cứ lúc nào',
+                        '≈76.000đ/giờ — rẻ nhất thị trường!',
+                        '🎓 Học thử 2 buổi MIỄN PHÍ trước khi quyết định'
                     ]
                 };
                 rec.backup = {
                     pkg: PACKAGES.toeic12,
-                    reason: 'Nếu bận buổi sáng → lớp buổi tối 3 buổi/tuần, chỉ 1.600.000đ/tháng'
-                };
-                rec.upsell = {
-                    pkg: target === '500-600' ? PACKAGES.toeic500 : PACKAGES.toeic610,
-                    reasons: [
-                        'Nếu muốn cam kết lâu dài: trọn gói 14 tháng — bình quân rẻ hơn gói lẻ!',
-                        'Học không giới hạn đến khi đạt mục tiêu + tặng tư vấn CV'
-                    ]
-                };
-            } else if (target === '500-600') {
-                rec.best = {
-                    pkg: PACKAGES.toeic500,
-                    reasons: [
-                        '14 tháng không giới hạn — yên tâm học đến khi đạt mục tiêu 500–600',
-                        'Bình quân chỉ ~857.000đ/tháng — rẻ hơn học lẻ từng tháng!',
-                        'Tặng kèm tư vấn CV + thiết kế CV miễn phí'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu muốn bắt đầu nhẹ, trả theo tháng trước' };
-                rec.upsell = {
-                    pkg: PACKAGES.combo500gt, reasons: [
-                        'Nâng cấp lên Combo: TOEIC + Giao tiếp — biết nói tự tin hơn chỉ có bằng',
-                        'Giao tiếp lưu loát là lợi thế mà bằng cấp không thể thay thế!'
-                    ]
+                    reason: 'Nếu bận buổi sáng → chuyển lớp tối 3 buổi/tuần, chỉ 1.600.000đ/tháng'
                 };
             } else {
                 rec.best = {
-                    pkg: PACKAGES.toeic610,
+                    pkg: PACKAGES.toeic12,
                     reasons: [
-                        '14 tháng không giới hạn — phù hợp target cao 610–750',
-                        'Bình quân chỉ ~1.071.000đ/tháng — tiết kiệm hơn học lẻ!',
-                        'Giáo viên chuyên luyện band cao, tặng tư vấn CV'
+                        '3 buổi/tuần buổi tối — phù hợp người đi làm/đi học',
+                        'Chỉ 1.600.000đ/tháng — nhẹ nhàng, không áp lực',
+                        'Không cần cam kết dài hạn — nghỉ bất cứ lúc nào',
+                        'Có test đánh giá cuối tháng để đo tiến độ',
+                        '🎓 Học thử 2 buổi MIỄN PHÍ trước khi quyết định'
                     ]
                 };
-                rec.backup = { pkg: PACKAGES.toeic20, reason: 'Nếu muốn bắt đầu nhẹ, trả theo tháng trước' };
-                rec.upsell = {
-                    pkg: PACKAGES.combo650gt, reasons: [
-                        'Nâng lên Combo TOEIC 650+ kèm Giao tiếp — nói lưu loát + điểm cao',
-                        'Profile hoàn thiện cho ứng tuyển hãng quốc tế!'
-                    ]
+                rec.backup = {
+                    pkg: PACKAGES.toeic20,
+                    reason: 'Muốn nhanh hơn? Lớp sáng 5 buổi/tuần — 2.300.000đ/tháng, rẻ nhất/giờ'
                 };
             }
+
+            // Upsell nhẹ nhàng: gói trọn gói (ẩn theo accordion)
+            rec.upsell = {
+                pkg: target === '500-600' ? PACKAGES.toeic500 : PACKAGES.toeic610,
+                reasons: [
+                    'Sau khi học thử, muốn cam kết lâu dài? Gói trọn gói tiết kiệm hơn!',
+                    'Học không giới hạn đến khi đạt mục tiêu — tặng kèm tư vấn CV miễn phí',
+                    'Hỗ trợ trả góp 5 lần — 0% lãi suất'
+                ]
+            };
         }
 
         rec.roadmap = buildToeicRoadmap(level, target);
@@ -1153,23 +1142,41 @@ function renderResult(rec) {
     const content = $('result-content');
     let html = '';
 
-    // Best match
+    // ===== 1. BANNER HỌC THỬ MIỄN PHÍ (luôn hiện, nổi bật nhất) =====
+    html += `
+    <div class="pkg-card" style="border:2px solid #10b981;background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04));">
+        <span class="pkg-badge" style="background:#10b981;color:#fff;font-size:0.85rem;">🎓 HỌC THỬ MIỄN PHÍ</span>
+        <div class="pkg-name" style="font-size:1.2rem;">Trải nghiệm 2 buổi học thử — Miễn phí 100%</div>
+        <ul class="pkg-reasons" style="margin:10px 0;">
+            <li>✅ Học thử 2 buổi với giáo viên chuyên nghiệp — không mất phí</li>
+            <li>✅ Được đánh giá trình độ & tư vấn lộ trình cá nhân</li>
+            <li>✅ Hài lòng mới đăng ký — 100% quyết định do bạn!</li>
+            <li>✅ Không ép buộc, không gọi spam — ORI cam kết</li>
+        </ul>
+        <button class="btn btn-primary btn-glow" style="width:100%;margin-top:8px;background:#10b981;" onclick="showScreen('contact')">
+            👉 Đăng ký học thử 2 buổi miễn phí
+            <span class="btn-arrow">→</span>
+        </button>
+    </div>`;
+
+    // ===== 2. GÓI PHÙ HỢP NHẤT (gói tháng nhẹ nhàng) =====
     html += `
     <div class="pkg-card best-match">
-        <span class="pkg-badge best">⭐ Phù hợp nhất</span>
+        <span class="pkg-badge best">⭐ ORI Đề Xuất — Bắt đầu từ đây</span>
         <div class="pkg-name">${rec.best.pkg.name}</div>
         <div class="pkg-price">${rec.best.pkg.priceLabel}</div>
         ${rec.best.pkg.note ? `<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px;">${rec.best.pkg.note}</p>` : ''}
         <ul class="pkg-reasons">
             ${rec.best.reasons.map(r => `<li>${r}</li>`).join('')}
         </ul>
+        ${rec.best.pkg.isMonthly ? `<div style="margin-top:10px;padding:8px 12px;background:rgba(16,185,129,0.08);border-radius:8px;font-size:0.82rem;color:#10b981;font-weight:600;">💡 Không cần cam kết — học tháng nào đóng tháng đó. Nghỉ bất cứ lúc nào!</div>` : ''}
     </div>`;
 
-    // Backup
+    // ===== 3. PHƯƠNG ÁN THAY THẾ =====
     if (rec.backup) {
         html += `
         <div class="pkg-card backup">
-            <span class="pkg-badge alt">🔄 Phương án thay thế</span>
+            <span class="pkg-badge alt">🔄 Lựa chọn khác</span>
             <div class="pkg-name">${rec.backup.pkg.name}</div>
             <div class="pkg-price">${rec.backup.pkg.priceLabel}</div>
             <ul class="pkg-reasons">
@@ -1178,41 +1185,11 @@ function renderResult(rec) {
         </div>`;
     }
 
-    // Upsell
-    if (rec.upsell) {
-        html += `
-        <div class="pkg-card upsell">
-            <span class="pkg-badge up">🚀 Gợi ý nâng cấp</span>
-            <div class="pkg-name">${rec.upsell.pkg.name}</div>
-            <div class="pkg-price">${rec.upsell.pkg.priceLabel}</div>
-            <ul class="pkg-reasons">
-                ${rec.upsell.reasons.map(r => `<li>${r}</li>`).join('')}
-            </ul>
-        </div>`;
-    }
-
-    // Auto-show interview link if any trọn gói is recommended
-    const hasFullPackage = [
-        rec.best && rec.best.pkg,
-        rec.backup && rec.backup.pkg,
-        rec.upsell && rec.upsell.pkg
-    ].some(pkg => pkg && !pkg.isMonthly);
-
-    if (hasFullPackage) {
-        html += `
-        <div class="pkg-card interview-link" style="border: 1px solid rgba(0,200,255,0.3); background: linear-gradient(135deg, rgba(0,200,255,0.08), rgba(100,50,255,0.08)); cursor: pointer;" onclick="window.open('https://ori-interview-courses.replit.app', '_blank')">
-            <span class="pkg-badge" style="background: linear-gradient(135deg, #00c8ff, #6432ff); color: #fff;">✈️ Luyện PV Chuyên Nghiệp</span>
-            <div class="pkg-name">✈️ Tiếng Anh Phỏng Vấn Hàng Không 1-1</div>
-            <p style="font-size:0.85rem;color:var(--text-muted);margin:6px 0;">Coaching PV chuyên nghiệp: mặt đất, tiếp viên nội địa & quốc tế — đảm bảo +10tr nếu không đậu</p>
-            <div style="font-size:0.85rem;color:#00c8ff;margin-top:8px;font-weight:600;">Xem chi tiết gói PV →</div>
-        </div>`;
-    }
-
-    // Roadmap
-    if (rec.roadmap.length > 0) {
+    // ===== 4. LỘ TRÌNH =====
+    if (rec.roadmap && rec.roadmap.length > 0) {
         html += `
         <div class="result-section">
-            <div class="result-section-title">📋 Lộ trình ước tính</div>
+            <div class="result-section-title">📋 Lộ trình học tập dự kiến</div>
             ${rec.roadmap.map(s => `
                 <div class="roadmap-step">
                     <div class="roadmap-dot"></div>
@@ -1225,7 +1202,29 @@ function renderResult(rec) {
         </div>`;
     }
 
-    // Payment
+    // ===== 5. NÂNG CẤP (nhẹ nhàng, collapsible) =====
+    if (rec.upsell) {
+        html += `
+        <div class="result-section" style="margin-top:12px;">
+            <div class="result-section-title" style="cursor:pointer;" onclick="var el=document.getElementById('upsellPanel');el.style.display=el.style.display==='none'?'block':'none';">
+                ✨ Muốn sịn hơn? Xem gói nâng cấp <span style="font-size:0.75rem;color:var(--text-muted);">(bấm để mở)</span>
+            </div>
+            <div id="upsellPanel" style="display:none;">
+                <div class="pkg-card upsell" style="margin-top:8px;">
+                    <span class="pkg-badge up">🚀 Nâng cấp</span>
+                    <div class="pkg-name">${rec.upsell.pkg.name}</div>
+                    <div class="pkg-price">${rec.upsell.pkg.priceLabel}</div>
+                    ${rec.upsell.pkg.months ? `<div style="font-size:0.8rem;color:#10b981;margin:4px 0;">📊 Bình quân chỉ ${formatVND(Math.round(rec.upsell.pkg.price / rec.upsell.pkg.months))}/tháng × ${rec.upsell.pkg.months} tháng</div>` : ''}
+                    <ul class="pkg-reasons">
+                        ${rec.upsell.reasons.map(r => `<li>${r}</li>`).join('')}
+                    </ul>
+                    ${!rec.upsell.pkg.isMonthly && rec.upsell.pkg.price >= 10000000 ? `<div style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;">💳 Hỗ trợ trả góp 5 lần — ${formatVND(Math.ceil(rec.upsell.pkg.price / 5))}/lần (0% lãi suất)</div>` : ''}
+                </div>
+            </div>
+        </div>`;
+    }
+
+    // ===== 6. THANH TOÁN =====
     if (rec.payment.type === 'monthly') {
         html += `
         <div class="result-section">
@@ -1235,7 +1234,7 @@ function renderResult(rec) {
                 <span class="payment-value highlight">${rec.payment.monthly}</span>
             </div>
             <div style="font-size:0.8rem;color:var(--text-muted);padding:4px 0 0;">
-                Không cần cam kết dài hạn – học tháng nào đóng tháng đó
+                Không cần cam kết dài hạn — học tháng nào đóng tháng đó
             </div>
         </div>`;
     } else {
