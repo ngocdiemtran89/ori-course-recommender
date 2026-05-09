@@ -388,7 +388,7 @@ const QUESTIONS = {
         subtitle: '',
         options: [
             { key: '500-600', label: '500–600 (đủ apply HK nội địa)', emoji: '🎯', next: 'q4_toeic_schedule' },
-            { key: '610-750', label: '610–750 (apply hãng quốc tế / thăng tiến)', emoji: '🚀', next: 'q4_toeic_schedule' }
+            { key: '610-750', label: '600–800+ (apply hãng quốc tế / thăng tiến)', emoji: '🚀', next: 'q4_toeic_schedule' }
         ]
     },
     q3_toeic_target_high: {
@@ -396,8 +396,8 @@ const QUESTIONS = {
         title: 'Điểm mục tiêu bạn muốn đạt?',
         subtitle: '',
         options: [
-            { key: '610-750', label: '610–750 (apply hãng quốc tế / thăng tiến)', emoji: '🚀', next: 'q4_toeic_schedule' },
-            { key: '700+', label: '700+ (target cao nhất)', emoji: '🏆', next: 'q4_toeic_schedule' }
+            { key: '610-750', label: '600–800+ (apply hãng quốc tế / thăng tiến)', emoji: '🚀', next: 'q4_toeic_schedule' },
+            { key: '700+', label: '800+ (target cao nhất)', emoji: '🏆', next: 'q4_toeic_schedule' }
         ]
     },
     q4_toeic_schedule: {
