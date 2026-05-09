@@ -835,24 +835,29 @@ function generateRecommendation() {
                 ]
             };
         } else if (value === 'premium') {
-            // Muốn bằng + giao tiếp → Combo TOEIC + GT
-            const combo = target === '500-600' ? PACKAGES.combo500gt : PACKAGES.combo650gt;
+            // Muốn bằng + giao tiếp → vẫn gợi ý gói tháng TRƯỚC, combo ở upsell
+            const schedule = a.q4_toeic_schedule;
+            const wantsMorning = (schedule === '20bth');
             rec.best = {
-                pkg: combo,
+                pkg: wantsMorning ? PACKAGES.toeic20 : PACKAGES.toeic12,
                 reasons: [
-                    'Combo hoàn hảo: vừa có điểm TOEIC, vừa nói lưu loát',
-                    'Tiết kiệm hơn mua riêng từng gói — học cả hai song song',
-                    'Giao tiếp tốt + TOEIC cao = profile hoàn thiện cho mọi cơ hội'
+                    wantsMorning ? '5 buổi/tuần buổi sáng — tiến độ nhanh nhất' : '3 buổi/tuần buổi tối — phù hợp người đi làm',
+                    wantsMorning ? 'Chỉ 2.300.000đ/tháng — đóng tháng nào học tháng đó' : 'Chỉ 1.600.000đ/tháng — nhẹ nhàng, không áp lực',
+                    'Bắt đầu với TOEIC trước — thêm Giao tiếp sau khi đã ổn định',
+                    '🎓 Học thử 2 buổi MIỄN PHÍ trước khi quyết định'
                 ]
             };
             rec.backup = {
-                pkg: target === '500-600' ? PACKAGES.toeic500 : PACKAGES.toeic610,
-                reason: 'Nếu muốn lấy bằng TOEIC trước, bổ sung giao tiếp sau'
+                pkg: wantsMorning ? PACKAGES.toeic12 : PACKAGES.toeic20,
+                reason: wantsMorning ? 'Bận buổi sáng? Lớp tối 3 buổi/tuần chỉ 1.600.000đ/tháng' : 'Muốn nhanh hơn? Lớp sáng 5 buổi/tuần — 2.300.000đ/tháng'
             };
+            // Combo ẩn trong accordion
             rec.upsell = {
-                pkg: PACKAGES.comboMatDat, reasons: [
-                    'Muốn đảm bảo việc làm? Trọn gói mặt đất — học đến khi có việc',
-                    'Bao gồm luyện PV, CV, English — yên tâm 100%'
+                pkg: target === '500-600' ? PACKAGES.combo500gt : PACKAGES.combo650gt,
+                reasons: [
+                    'Muốn có cả TOEIC + Giao tiếp trong 1 gói? Combo tiết kiệm hơn mua riêng!',
+                    'Giao tiếp lưu loát + điểm TOEIC = profile hoàn thiện cho mọi cơ hội',
+                    'Hỗ trợ trả góp 5 lần — 0% lãi suất'
                 ]
             };
         } else {
