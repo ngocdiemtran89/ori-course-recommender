@@ -365,7 +365,7 @@ const QUESTIONS = {
             { key: 'giaotiep', label: 'Giao tiếp tiếng Anh', emoji: '💬', next: 'q2_gt' },
             { key: 'phongvan', label: 'Phỏng vấn hàng không', emoji: '✈️', next: null, externalLink: 'https://ori-interview-courses.replit.app' },
             { key: 'combo', label: 'TOEIC + Giao tiếp (cả hai)', emoji: '🔥', next: 'q2_combo' },
-            { key: 'training', label: 'Sắp đi training hàng không', emoji: '🛫', next: 'q2_training' }
+            { key: 'training', label: 'TOEIC + Giao Tiếp + Đảm bảo việc làm', emoji: '💼', next: 'q2_training' }
         ]
     },
 
