@@ -110,15 +110,40 @@ const PACKAGES = {
             'Trả góp 5 lần — không lãi suất'
         ]
     },
+    giaotiepThang: {
+        name: 'Giao Tiếp Theo Tháng',
+        price: 2500000,
+        priceLabel: '2.500.000đ/tháng',
+        note: 'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu',
+        isMonthly: true,
+        category: 'giaotiep',
+        tag: 'Theo tháng — nhẹ nhàng',
+        subtitle: 'Luyện giao tiếp phản xạ, đóng theo tháng',
+        perHour: '',
+        schedule: 'Lịch linh hoạt',
+        duration: 'Theo tháng',
+        sessions: '8 buổi/tháng',
+        sessionLength: '1.5 giờ/buổi',
+        totalHours: '12 giờ/tháng',
+        highlight: '💡 Không cam kết — học tháng nào đóng tháng đó',
+        features: [
+            'Giao tiếp phản xạ — phương pháp ORI độc quyền',
+            '2.500.000đ/tháng — đóng tháng nào học tháng đó',
+            'Không cần cam kết dài hạn — nghỉ bất cứ lúc nào',
+            'Chủ đề đa dạng: công việc, du lịch, đời sống',
+            'Giáo viên hướng dẫn nhóm nhỏ',
+            '🎓 Học thử 2 buổi MIỄN PHÍ'
+        ]
+    },
     giaotiep: {
-        name: 'Giao tiếp Thành Thạo',
+        name: 'Giao tiếp Thành Thạo (Trọn gói)',
         price: 15000000,
         priceLabel: '15.000.000đ / 6 tháng',
         note: 'Học trong 6 tháng, tặng thêm 2 tháng nếu học đều nghỉ ≤10%',
         isMonthly: false,
         months: 6,
         category: 'giaotiep',
-        tag: '6 tháng',
+        tag: '6 tháng — Trọn gói',
         subtitle: 'Luyện tập giao tiếp đạt mức thành thạo',
         perHour: '≈2.500.000đ/tháng',
         schedule: 'Lịch linh hoạt',
@@ -933,55 +958,27 @@ function generateRecommendation() {
                     'English HK + AI = chuẩn bị toàn diện trước training'
                 ]
             };
-        } else if (value === 'ultimate') {
-            // Muốn giao tiếp + bằng + việc làm → Combo + PV
-            rec.best = {
-                pkg: PACKAGES.combo500gt,
-                reasons: [
-                    'Combo TOEIC + Giao tiếp — có cả bằng lẫn kỹ năng nói thực tế',
-                    'Học không giới hạn trong 14 tháng — không lo bị giới hạn',
-                    'Tặng tư vấn CV — sẵn sàng ứng tuyển ngay khi hoàn thành'
-                ]
-            };
-            rec.backup = { pkg: PACKAGES.giaotiep, reason: 'Nếu muốn tập trung giao tiếp trước' };
-            rec.upsell = {
-                pkg: PACKAGES.comboMatDat, reasons: [
-                    'Muốn đảm bảo có việc? Trọn gói mặt đất — học đến khi có việc',
-                    'Bao gồm PV + English + CV — an tâm 100%'
-                ]
-            };
-        } else if (value === 'premium') {
-            // Muốn bằng + giao tiếp lưu loát → Combo
-            rec.best = {
-                pkg: PACKAGES.combo500gt,
-                reasons: [
-                    'Combo hoàn hảo: TOEIC lấy bằng + Giao tiếp phản xạ lưu loát',
-                    'Tiết kiệm hơn mua riêng — có cả hai cùng lúc',
-                    'Giao tiếp lưu loát + điểm TOEIC = hồ sơ ấn tượng'
-                ]
-            };
-            rec.backup = { pkg: PACKAGES.giaotiep, reason: 'Nếu muốn tập trung giao tiếp trước, bổ sung TOEIC sau' };
-            rec.upsell = {
-                pkg: PACKAGES.combo650gt, reasons: [
-                    'Nâng lên Combo 650+ — điểm TOEIC cao hơn cho cơ hội tốt hơn',
-                    'Profile mạnh mẽ khi apply hãng quốc tế'
-                ]
-            };
         } else {
-            // basic: Chỉ muốn giao tiếp
+            // TẤT CẢ nhánh giao tiếp: luôn gợi ý GÓI THÁNG trước
             rec.best = {
+                pkg: PACKAGES.giaotiepThang,
+                reasons: [
+                    'Giao tiếp phản xạ — phương pháp ORI độc quyền',
+                    'Chỉ 2.500.000đ/tháng — đóng tháng nào học tháng đó',
+                    'Không cần cam kết dài hạn — nghỉ bất cứ lúc nào',
+                    '🎓 Học thử 2 buổi MIỄN PHÍ trước khi quyết định'
+                ]
+            };
+            rec.backup = {
+                pkg: PACKAGES.toeic12,
+                reason: 'Muốn kết hợp TOEIC? Thêm lớp TOEIC tối chỉ 1.600.000đ/tháng'
+            };
+            rec.upsell = {
                 pkg: PACKAGES.giaotiep,
                 reasons: [
-                    '6 tháng giao tiếp phản xạ — bình quân chỉ 2.500.000đ/tháng',
-                    'Phương pháp ORI độc quyền, nghỉ ≤10% được tặng thêm 2 tháng',
-                    'Phù hợp cho du lịch, công việc và đời sống hàng ngày'
-                ]
-            };
-            rec.backup = { pkg: PACKAGES.toeic12, reason: 'Nếu muốn bắt đầu nhẹ với nền tảng TOEIC trước' };
-            rec.upsell = {
-                pkg: PACKAGES.combo500gt, reasons: [
-                    'Thêm bằng TOEIC — giao tiếp giỏi + có bằng = profile vượt trội!',
-                    'Combo tiết kiệm hơn mua riêng từng gói'
+                    'Muốn cam kết 6 tháng? Gói trọn gói tiết kiệm hơn + tặng 2 tháng bonus!',
+                    'Học đều nghỉ ≤10% được tặng thêm 2 tháng miễn phí (tổng 8 tháng)',
+                    'Hỗ trợ trả góp 5 lần — 0% lãi suất'
                 ]
             };
         }
@@ -997,63 +994,36 @@ function generateRecommendation() {
     } else if (goal === 'combo') {
         const comboTarget = a.q3_combo_target;
 
-        if (value === 'ultimate') {
-            // Muốn tất cả: bằng + nói + việc → Combo + PV đảm bảo
-            const combo = comboTarget === 'combo500' ? PACKAGES.combo500gt : PACKAGES.combo650gt;
-            rec.best = {
-                pkg: combo,
-                reasons: [
-                    'Combo TOEIC + Giao tiếp — có cả bằng lẫn kỹ năng nói',
-                    'Học không giới hạn trong 14 tháng hoặc đến khi đạt mục tiêu',
-                    'Tặng tư vấn CV — sẵn sàng ứng tuyển ngay khi hoàn thành'
-                ]
-            };
-            rec.backup = {
-                pkg: comboTarget === 'combo500' ? PACKAGES.toeic500 : PACKAGES.toeic610,
-                reason: 'Nếu muốn tập trung TOEIC trước'
-            };
-            rec.upsell = {
-                pkg: PACKAGES.comboMatDat, reasons: [
-                    'Muốn đảm bảo việc làm? Trọn gói mặt đất — học đến khi có việc',
-                    'Bao gồm tất cả: PV + English + CV — yên tâm tuyệt đối'
-                ]
-            };
-        } else {
-            // premium & basic → vẫn recommend combo (vì user đã chọn combo)
-            if (comboTarget === 'combo500') {
-                rec.best = {
-                    pkg: PACKAGES.combo500gt,
-                    reasons: [
-                        'Kết hợp TOEIC 500–600 + Giao tiếp trong 1 gói tiết kiệm',
-                        'Tiết kiệm hơn mua riêng từng gói — học cả hai song song',
-                        'Nâng cả điểm thi lẫn kỹ năng nói — hoàn thiện profile'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic500, reason: 'Nếu muốn tập trung TOEIC trước, free CV' };
-                rec.upsell = {
-                    pkg: PACKAGES.comboMatDat, reasons: [
-                        'Muốn đảm bảo việc làm? Trọn gói mặt đất — học đến khi có việc',
-                        'Bao gồm PV + English + CV — yên tâm 100%'
-                    ]
-                };
-            } else {
-                rec.best = {
-                    pkg: PACKAGES.combo650gt,
-                    reasons: [
-                        'Combo TOEIC 650–700+ & Giao tiếp — gói mạnh mẽ nhất',
-                        'Tiết kiệm hơn mua riêng — có cả điểm cao lẫn kỹ năng nói',
-                        'Phù hợp apply hãng quốc tế cần cả điểm + speaking'
-                    ]
-                };
-                rec.backup = { pkg: PACKAGES.toeic610, reason: 'Nếu muốn tập trung TOEIC trước, free CV' };
-                rec.upsell = {
-                    pkg: PACKAGES.comboTVHK, reasons: [
-                        'Muốn apply tiếp viên? Trọn gói TVHK — học đến khi có việc',
-                        'Full support: PV + CV + grooming + English'
-                    ]
-                };
-            }
-        }
+        // COMBO: Luôn gợi ý TOEIC theo tháng + GT theo tháng TRƯỚC
+        const schedule = a.q4_toeic_schedule || '12bth';
+        const wantsMorning = (schedule === '20bth');
+        const toeicMonthly = wantsMorning ? PACKAGES.toeic20 : PACKAGES.toeic12;
+        const toeicPrice = wantsMorning ? '2.300.000đ' : '1.600.000đ';
+        const toeicLabel = wantsMorning ? '5 buổi/tuần sáng' : '3 buổi/tuần tối';
+
+        rec.best = {
+            pkg: toeicMonthly,
+            reasons: [
+                `TOEIC ${toeicLabel} — ${toeicPrice}/tháng`,
+                'Đóng theo tháng — học bao nhiêu đóng bấy nhiêu',
+                'Bắt đầu TOEIC trước, ổn định rồi thêm Giao tiếp',
+                '🎓 Học thử 2 buổi MIỄN PHÍ'
+            ]
+        };
+        rec.backup = {
+            pkg: PACKAGES.giaotiepThang,
+            reason: `Thêm lớp Giao Tiếp chỉ 2.500.000đ/tháng — học song song với TOEIC. Tổng chỉ ${wantsMorning ? '4.800.000đ' : '4.100.000đ'}/tháng cho CẢ HAI!`
+        };
+        // Combo trọn gói ẩn trong accordion
+        const combo = comboTarget === 'combo500' ? PACKAGES.combo500gt : PACKAGES.combo650gt;
+        rec.upsell = {
+            pkg: combo,
+            reasons: [
+                'Muốn gộp TOEIC + Giao tiếp trong 1 gói? Combo tiết kiệm hơn mua riêng!',
+                combo === PACKAGES.combo500gt ? 'Tiết kiệm 7 triệu so với mua riêng (12tr + 15tr = 27tr → chỉ 20tr)' : 'Tiết kiệm 5 triệu so với mua riêng',
+                'Hỗ trợ trả góp 5 lần — 0% lãi suất'
+            ]
+        };
 
         rec.roadmap = [
             { phase: 'GĐ1 (Tháng 1–3)', desc: 'TOEIC chuyên sâu: ngữ pháp, từ vựng, luyện đề' },
